@@ -1,0 +1,15 @@
+*.log
+*.bin
+
+chatbot/legacy/my_rules_db/*.bin
+
+# Python 뉴스 백업 파일 (타임스탬프 파일은 제외, latest만 포함)
+python/news_backup/kbo_news_202*.csv
+
+# Python cache 파일
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+**/*.pyc

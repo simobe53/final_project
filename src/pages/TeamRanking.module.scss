@@ -1,0 +1,134 @@
+.teamRanking {
+    background: white;
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.titleBar {
+    width: 4px;
+    height: 20px;
+    background-color: #dc3545;
+    margin-right: 8px;
+}
+
+.title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.table {
+    width: 100%;
+    overflow-x: auto;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.tableHeader {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #666;
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.tableBody {
+    display: flex;
+    flex-direction: column;
+}
+
+.tableRow {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: #f8f9fa;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.rank {
+    width: 50px;
+    text-align: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.team {
+    width: 120px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.teamLogo {
+    margin-right: 0 !important;
+    
+    :global(.profile-card__image) {
+        margin: 0;
+    }
+}
+
+.teamName {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 0;
+}
+
+.stat {
+    width: 60px;
+    text-align: center;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.loading, .empty {
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .stat {
+        width: 50px;
+        font-size: 0.75rem;
+    }
+
+    .team {
+        width: 100px;
+    }
+
+    .teamName {
+        font-size: 0.875rem;
+    }
+}
+

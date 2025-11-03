@@ -1,0 +1,114 @@
+// src/components/LineupSelect.module.scss
+
+.lineupSelectContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; // gap-3 대체
+    min-height: 600px; // 투수 1명, 타자 9명 모두 선택된 경우의 높이로 고정
+  }
+  
+  .playerSection {
+    margin-bottom: 0.5rem; // mb-2 대체
+  }
+  
+  .playerSelection {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; // gap-3 대체
+  }
+  
+  .playerImage {
+    border-radius: 12px; // border-radius-12 대체
+    width: 40px;
+    height: 40px;
+    object-fit: cover; // 이미지 비율 유지
+  }
+  
+  // playerButton 내에서 사용되는 이미지
+  .playerButton .playerImage {
+    width: 25px;
+    height: 25px;
+  }
+  
+  // pitcherButton 내에서 사용되는 이미지
+  .pitcherButton .playerImage {
+    width: 30px;
+    height: 30px;
+  }
+  
+  // batterBadge 내에서 사용되는 이미지
+  .batterBadge .playerImage {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .positionLabel {
+    white-space: nowrap; // text-nowrap 대체
+    font-weight: bold; // fw-bold 대체
+    min-width: 50px; // 인라인 스타일 대체
+  }
+  
+.batterBadge {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem; // gap-1 대체
+    // badge, bg-secondary에 해당하는 색상/패딩을 정의하거나,
+    // Bootstrap을 계속 사용하려면 이 부분은 그대로 둡니다.
+}
+
+// 타자 위치별 컨테이너 - 3열 배열 적용
+.positionContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 80px;
+    align-items: flex-start;
+}
+
+// 타자 그리드 컨테이너 - 3열 그리드 또는 반응형
+.battersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+    min-height: 65px;
+    align-items: start;
+    justify-items: start;
+}
+
+// 개별 선수 선택 버튼
+.playerButton {
+    min-width: 100px;
+    min-height: 45px;
+}
+
+// 투수 선택 컨테이너
+.pitchersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+// 투수 선택 버튼
+.pitcherButton {
+    min-width: 100px;
+}
+
+// 타자들 전체 컨테이너 - 플렉스 버튼 컨테이너로 변경
+.battersContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+
+}
+
+// 선택된 라인업 요약 영역 고정 높이
+.lineupSummary {
+    min-height: 268px; // 라인업 요약 영역 고정 높이
+}
+
+// 투수 선택 영역 고정 높이
+.pitchersSection {
+    min-height: 100px;
+}

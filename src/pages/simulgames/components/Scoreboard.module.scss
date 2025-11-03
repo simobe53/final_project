@@ -1,0 +1,71 @@
+.table{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+    p {
+        border:none;
+        color: #fff;
+        padding: 8px 0;
+        margin: 0 6px;
+        text-align: center;
+        box-sizing: border-box;
+        height: 40px;
+        min-width: 32px;
+    }
+
+    .current {
+        color: var(--point-color);
+        font-weight: 900;
+        border-bottom: 3px solid var(--point-color);
+    }
+
+    .borderright {
+        border-right: 1px solid rgba(255,255,255,.2);
+    }
+
+    .borderleft {
+        border-left: 1px solid rgba(255,255,255,.2);
+    }
+
+}
+
+.outcount {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        margin: 8px auto;
+        & > span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            margin: 0px 3px;
+            box-shadow: none;
+            box-sizing: border-box;
+        }
+        & > span.active {
+            background-color: var(--point-color);
+            color: white;
+            animation: outani ease-in .5s forwards;
+        }
+    }
+
+    @keyframes outani {
+        0% {
+            width: 24px;
+            height: 24px;
+        }
+        50% {
+            width: 28px;
+            height: 28px;
+        }
+        100% {
+            width: 24px;
+            height: 24px;
+        }
+    }

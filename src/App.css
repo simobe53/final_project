@@ -1,0 +1,439 @@
+.invisible { width: 0; height: 0; }
+
+.hidden { display: none !important; }
+
+.fa-slow {
+    --fa-animation-duration: 2s;
+}
+
+.full-height { height: 100% }
+main { padding: 20px }
+
+input.form-input {
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+fieldset {
+    display: flex;
+    position: relative;
+    gap: 8px;
+}
+fieldset input[type="radio"], fieldset input[type="checkbox"], input[type="file"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    width: 0;
+    height: 0;
+}
+
+fieldset input[type="radio"] + label, fieldset input[type="checkbox"] + label { 
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid var(--gray-border-color);
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+fieldset input[type="radio"]:checked + label, fieldset input[type="checkbox"]:checked + label {
+    border-color: var(--point-color);
+}
+
+fieldset input[type="radio"]:checked + label::before {
+    content: "\f058";
+    font-family: 'Font Awesome\ 5 Free';
+    display: inline;
+    margin-left: -20px;
+    margin-right: 4px;
+    color: var(--point-color);
+}
+
+input[type="file"] + label {
+    width: 100%;
+    height: 60px;
+    border: 2px dashed var(--gray-border-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 8px;
+}
+input[type="file"] + label i {
+    font-size: 24px;
+    color: #ccc;
+}
+input[type="file"] + label p {
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.select-box {
+    border: 1px solid var(--gray-border-color);
+    border-radius: 4px;
+    position: relative;
+    width: 100%;
+}
+
+.select-box::after {
+    content: "▼";
+    display: block;
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    font-size: 10px;
+    transform:scaleY(80%)
+}
+
+select {
+    padding-left: 8px;
+    border: none !important;
+    width: 100%;
+    height: 100%;
+}
+
+
+.error-message {
+    font-size: 12px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: all .2s;
+    color: indianred;
+    border: 2px solid indianred;
+    background-color: rgb(255, 214, 214);
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+
+.profile-card__image {
+    /* margin: 0 auto; */
+    text-align: center;
+    display: block;
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 100px;
+    overflow: hidden;
+}
+.profile-card__image.user {
+    background: #f2f2f2 url('/assets/icons/empty_profile.svg') center / 50% no-repeat;
+}
+.profile-card__image.small {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    min-height: 30px;
+}
+.profile-card__image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.section_title {
+    font-weight: 500;
+    font-size: 20px;
+    padding-left: 8px;
+    border-left: 3px solid var(--point-color);
+    margin-top: 40px;
+    margin-bottom: 16px;
+}
+
+.image-square {
+    display: block;
+    width: 100%;
+    padding-bottom: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--gray-border-color);
+    background-size: cover;
+    background-position: center;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.list-group.full {
+    border-radius: 0;
+}
+.list-group.full li {
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+}
+.p-20 .list-group.full {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+}
+
+.list-group.full li { border-bottom-width: 8px; }
+.list-group.full li:first-child { border-top-width: 8px; }
+
+.p-20 .list-group.full li { border-bottom-width: 1px; }
+.p-20 .list-group.full li:first-child { border-top-width: 1px; }
+
+.list-group-item-action:hover {
+    background-color: var(--point-dim-color);
+}
+
+
+.calendar {
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    background-color: var(--point-color);
+    border: 2px solid var(--point-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.calendar p:not(.h3) { font-size: 12px; margin-bottom: 2px; }
+
+.create_button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 20px;
+    left: calc(100% - 70px);
+    border: none;
+    background: var(--point-color) url('/assets/icons/pencil.png') center / 55% no-repeat;
+    box-shadow: 0 0 20px 0 #191E2333;
+    display: block;
+    z-index: 1;
+}
+
+.create_button::before {
+    content: "등록하기";
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    color: var(--point-color);
+    font-size: 12px;
+    font-weight: 600;
+    transition: all .2s;
+    opacity: 0;
+    border: 2px solid var(--point-color);
+    background: #FFF;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 20px;
+}
+.create_button::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: #FFF;
+    transform: rotate(45deg) translateX(-50%);
+    position: absolute;
+    transition: all .2s;
+    opacity: 0;
+    left: 50%;
+    top: 10px;
+    border-right: 2px solid var(--point-color);
+    border-bottom: 2px solid var(--point-color);
+}
+.create_button:hover::before {
+    top: -20px;
+    opacity: 1;
+}
+
+.create_button:hover::after {
+    top: 0px;
+    opacity: 1;
+}
+
+.start_game_button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    position: sticky;
+    position: -webkit-sticky;
+    bottom: 20px;
+    left: calc(100% - 130px);
+    border: none;
+    background: var(--point-color);
+    box-shadow: 0 0 20px 0 #191E2333;
+    display: block;
+    z-index: 1;
+}
+
+.start_game_button::before {
+    content: "게임시작";
+    display: block;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    color: var(--point-color);
+    font-size: 12px;
+    font-weight: 600;
+    transition: all .2s;
+    opacity: 0;
+    border: 2px solid var(--point-color);
+    background: #FFF;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 20px;
+}
+
+.start_game_button::after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: #FFF;
+    transform: rotate(45deg) translateX(-50%);
+    position: absolute;
+    transition: all .2s;
+    opacity: 0;
+    left: 50%;
+    top: 10px;
+    border-right: 2px solid var(--point-color);
+    border-bottom: 2px solid var(--point-color);
+}
+
+.start_game_button:hover::before {
+    top: -20px;
+    opacity: 1;
+}
+
+.start_game_button:hover::after {
+    top: 0px;
+    opacity: 1;
+}
+
+.start_game_button:disabled {
+    background: #aaa;
+    box-shadow: 0 0 20px 0 #aaa;
+}
+
+.start_game_button:disabled::before {
+    content: "로딩중...";
+    color: #aaa;
+    border-color: #aaa;
+}
+
+
+.bottom-window {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: var(--header-height);
+    width: 100%;
+    transition: all .2s;
+    transform: translateY(100%);
+    margin-top: -60px;
+}
+.bottom-window.active {
+    transform: translateY(0);
+}
+
+.bottom-window .close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 20px;
+    color: var(--text-color);
+    width: 40px;
+    height: 40px;
+    border-bottom: 1px solid var(--gray-border-color);
+    border-left: 1px solid var(--gray-border-color);
+    border-radius: 0;
+}
+
+.bottom-window .fold-btn {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%) rotate(45deg);
+    font-size: 20px;
+    color: var(--text-color);
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-top: 1px solid var(--gray-border-color);
+    border-left: 1px solid var(--gray-border-color);
+    border-top-left-radius: 20px;
+}
+.bottom-window .fold-btn i {
+    position: relative;
+    transform: rotate(-45deg);
+}
+
+.comment {
+    position: relative;
+}
+
+.comment button.delete {
+    position: absolute;
+    transition: all .2s;
+    width: 0;
+    height: 100%;
+    white-space: nowrap;
+    border-radius: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    font-size: 13px;
+}
+
+.comment:hover button.delete, .comment:focus button.delete, .comment:active button.delete {
+    width: 80px;
+}
+
+
+.category-btn {
+    border: 2px solid var(--point-color) !important;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 4px 12px 6px;
+}
+
+.category-btn:not(.selected) {
+    background: #FFF !important;
+    color: var(--point-color) !important;
+}
+
+.category-btn.selected {
+    background: var(--point-color) !important;
+    color: #FFF !important;
+}
+
+ul.slider li {
+    max-width: calc(25% - 6px);
+}
+
+
+#googleBtn *[role="button"] {
+    max-width: 100% !important;
+    height: 55px;
+    border-radius: 12px;
+}
+
+#googleBtn iframe {
+    height: 55px;
+}
+
+
+.text-truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;  /* 2줄 넘어가면 말줄임 */
+  -webkit-box-orient: vertical;
+}

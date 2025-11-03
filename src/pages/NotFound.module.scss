@@ -1,0 +1,14 @@
+.noneService {
+    display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    .inner {
+        img {
+            margin: 20px;
+        }
+    }
+}

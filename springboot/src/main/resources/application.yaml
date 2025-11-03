@@ -1,0 +1,106 @@
+server: #디폴트 8080
+  port: 8080
+  servlet:
+    session:
+      timeout: 1800 #30분이 기본값
+spring:
+  jackson:
+    time-zone: Asia/Seoul
+  #정적자원의 디폴트 설정
+  mvc:
+    static-path-pattern: /** 
+  web:
+    resources:      
+      static-locations: classpath:/static/ #정적자원의 물리적 위치
+      add-mappings: true #자동 매핑 활성화(true:기본값),비 활성화시(false) path-pattern 및 static-location등이 적용되지 않는다
+  #DataBase Setting
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    #스프링 부트의 디폴트 커넥션 풀인 Hikari 디폴트 설정.
+    #https://github.com/brettwooldridge/HikariCP?tab=readme-ov-file#frequently-used
+    hikari:
+      auto-commit: true
+      connection-timeout: 30000
+      maximum-pool-size: 10
+  #Spring Data JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+    show-sql: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          timeout: 5000
+          starttls:
+            enable: true
+          ssl:
+            trust: smtp.gmail.com
+          connectiontimeout: 5000
+  servlet:
+    multipart:
+      file-size-threshold: 2MB
+      max-file-size: 10MB
+      max-request-size: 50MB
+kakao: #카카오 로그인을 위한 api와 uri
+  rest_api_key: ${KAKAO_REST_API_KEY}
+  redirect_uri: ${KAKAO_REDIRECT_URI}
+  logout_redirect_uri: ${KAKAO_LOGOUT_REDIRECT_URI}
+
+# JWT 설정 - 환경변수에서 읽기 (보안)
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION}
+
+google:
+  client-id: ${GOOGLE_CLIENT_ID}
+  client-secret: ${GOOGLE_CLIENT_SECRET}
+
+fastapi:
+  server-url: ${FASTAPI_SERVER_URL}
+
+cloudflare:
+  r2:
+    endpoint: https://${ACCOUNT_ID}.r2.cloudflarestorage.com
+    access-key: ${ACCESS_KEY_ID}
+    secret-key: ${SECRET_ACCESS_KEY}
+    bucket: use2id
+    public-base-url: https://${PUBLIC_BASE_URL}.r2.dev
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+  file:
+    name: logs/spring.log
+# Passwordless X1280 설정
+passwordless:
+  server-id: ${PASSWORDLESS_SERVER_ID}
+  server-key: ${PASSWORDLESS_SERVER_KEY}
+  rest-check-url: ${PASSWORDLESS_REST_URL}
+  push-connector-url: ${PASSWORDLESS_WS_URL}
+  recommend: ${PASSWORDLESS_RECOMMEND}
+
+# Frontend URL (배포 시 환경변수로 설정)
+front:
+  url: ${FRONT_URL:http://localhost:5173}
+
+# Swagger 설정 (배포 환경에서는 false로 설정)
+springdoc:
+  swagger-ui:
+    enabled: ${SWAGGER_ENABLED:false}  # 기본값: 비활성화 (보안)
+  api-docs:
+    enabled: ${SWAGGER_ENABLED:false}

@@ -1,0 +1,59 @@
+# ====================================================================
+# 로컬 개발 환경 전용 - 빌드 & 푸시용
+# 용도: docker-compose -f docker-compose.development.yml build
+#       docker-compose -f docker-compose.development.yml push
+# ====================================================================
+version: '3.8'
+
+services:
+  # Spring Boot Backend
+  springboot:
+    image: ruyahct/kbo-springboot:latest
+    build:
+      context: ./myball_springboot # 빌드 컨텍스트를 springboot 디렉토리로 변경
+      dockerfile: Dockerfile
+
+  # FastAPI ML Service
+  fastapi:
+    image: ruyahct/kbo-fastapi:latest
+    build:
+      context: ./myball_FastAPI
+      dockerfile: Dockerfile
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: ruyahct/kbo-nginx:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+
+  # 정리 결과:
+
+  # 삭제된 것들:
+
+  # - ❌ environment: (실행 시점 환경변수)
+  # - ❌ ports: (포트 바인딩)
+  # - ❌ depends_on: (실행 순서)
+  # - ❌ networks: (네트워크 설정)
+  # - ❌ volumes: (볼륨 마운트)
+  # - ❌ restart: (재시작 정책)
+  # - ❌ container_name: (컨테이너 이름)
+  # - ❌ oracle 서비스 (빌드 불필요)
+
+  # 남은 것들:
+
+  # - ✅ image: (Docker Hub 이미지 이름)
+  # - ✅ build: (빌드 설정)
+
+  # 사용 방법:
+
+  # # 빌드만
+  # docker-compose -f docker-compose.development.yml build
+
+  # # 푸시만
+  # docker-compose -f docker-compose.development.yml push
+
+  # # 빌드 + 푸시
+  # docker-compose -f docker-compose.development.yml build
+  # docker-compose -f docker-compose.development.yml push
+

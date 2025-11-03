@@ -1,0 +1,85 @@
+#RelayBox{
+    margin: auto;
+    padding: 0;
+    width: 80%;
+    height: justify-content;
+    border-radius: 8px;
+    border: 1px solid var(--gray-border-color);;
+    span{
+        display: inline-block;
+    }
+}
+.player_info{
+    padding: 10px;
+    border-bottom: 1px solid var(--gray-border-color);
+    display: flex;
+    gap: 8px;
+}
+.player_info > .img {
+    margin-right: 6px;
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+}
+.player_info > .img img { width: 100%; height: auto; }
+.player_info > .img + div {
+    display: flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    justify-content: center;
+}
+.player_info .player { 
+    display: inline-flex; 
+    align-items: center;
+}
+.player_info .player > span:nth-child(1){
+    font-weight: bold;
+    margin-right: 8px;
+    font-size: 18px;
+}
+.player_info .player > span:nth-child(2) {
+    font-size: small;
+    color: gray;
+    margin-right: 8px;
+    font-size: 15px;
+}
+.player_info .player  > span:nth-child(3){
+    font-size: small;
+    color: gray;
+    font-size: 14px;
+}
+.player_info .info{
+    font-size: small;
+    color: gray;
+    padding-top: 4px;
+}
+.play_box{
+    padding: 10px;
+    background-color: rgb(225, 231, 235);
+    border-radius: 0px 0px 8px 8px;
+}
+.play_box > .player_out{
+    padding: 8px;
+    border-bottom: 1px solid var(--gray-border-color);
+}
+.play_box > .win_persent > span{
+    padding: 0;
+    font-weight: bold;
+}
+.play_box > .win_persent > :nth-child(3){
+    color: var(--point-color);
+}
+.text-red{
+    color: red;
+}
+.text-blue{
+    color: blue;
+}
+.text-green{
+    color: green;
+}
+
+.chart-result text {
+    fill: var(--point-color) !important;
+    font-size: 0.9em !important;
+}

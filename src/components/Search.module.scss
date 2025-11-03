@@ -1,0 +1,27 @@
+.search {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  padding: 8px 8px 8px 20px;
+  background-color: #fff;
+  border: 2px solid var(--point-color);
+  gap: 8px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  input {
+    border: none;
+    flex-grow: 1;
+    outline-color: #FFF;
+  }
+  i {
+    color: var(--point-color);
+  }
+  button {
+    border: none;
+    background-color: transparent;
+    width: 30px;
+  }
+  input {
+    max-width: calc(100% - 30px);
+  }
+}

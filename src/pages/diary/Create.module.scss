@@ -1,0 +1,263 @@
+.imageSection {
+  padding: 24px 44px;
+  flex-grow: 1;
+}
+
+.imageLabel {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+  border-left: 4px solid var(--point-color);
+  padding-left: 8px;
+  padding-bottom: 4px;
+}
+
+.ticketUpload {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed #dee2e6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    border-color: #007bff;
+    background-color: #f8f9ff;
+  }
+}
+
+.bottomImageUpload {
+  width: 100%;
+  height: 160px;
+  border: 2px dashed #dee2e6;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    border-color: #007bff;
+    background-color: #f8f9ff;
+  }
+}
+
+.uploadPlaceholder {
+  text-align: center;
+  color: #6c757d;
+
+  i {
+    font-size: 3rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}
+
+.imagePreview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.removeImage {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+  padding: 0;
+  text-align: center;
+  &:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+}
+
+.removeImage i { font-size: 16px; }
+
+.textSection {
+  margin-bottom: 24px;
+}
+
+.textLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.textArea {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+
+  &::placeholder {
+    color: #6c757d;
+  }
+}
+
+.buttonSection {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.cancelButton {
+  padding: 12px 24px;
+  border: 1px solid #dee2e6;
+  background: white;
+  color: #6c757d;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #f8f9fa;
+    border-color: #adb5bd;
+  }
+}
+
+.saveButton {
+  padding: 12px 24px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #0056b3;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+  .modalContent {
+    margin: 10px;
+    max-height: 95vh;
+  }
+
+  .modalHeader {
+    padding: 16px 20px;
+  }
+
+  .form {
+    padding: 20px;
+  }
+
+  .ticketUpload {
+    height: 160px;
+  }
+
+  .bottomImageUpload {
+    height: 100px;
+  }
+
+  .buttonSection {
+    flex-direction: column;
+  }
+
+  .cancelButton,
+  .saveButton {
+    width: 100%;
+  }
+}
+
+.bottomImagesPreview {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.bottomImagePreviewItem {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bottomImagePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.removeBottomImage {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.7rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+}

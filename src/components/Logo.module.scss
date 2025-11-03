@@ -1,0 +1,70 @@
+.logo { 
+    display: flex;
+    align-items: start;
+    width: 120px;
+    overflow: hidden;
+    position: relative;
+    height: 120px;
+    border-radius: 100%;
+    margin: auto;
+    img {
+      height: 150%;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+}
+.logoText {
+    margin: 0; 
+    padding: 0;
+    font-size: 20px;
+    display: inline-block;
+    position: relative;
+    color: transparent;
+    text-transform: uppercase;
+
+    span:nth-child(1){
+        position:absolute;
+        top:0; left:0; color: #000;
+        transition:0.5s;
+        clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+        overflow:hidden;
+    }
+
+    &:hover span:nth-child(1){
+        transform:translateY(-6px); 
+    }
+
+    span:nth-child(2){
+      position:absolute;
+      top:0; left:0; color: #000;
+      transition:0.5s;
+      clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+      overflow:hidden;
+    }
+
+    &:hover span:nth-child(2){
+      transform:translateY(6px); 
+    }
+
+    span:nth-child(3){
+        position:absolute;
+        top: 50%;
+        left: 0;
+        transform:translateY(-50%) scaleY(0);
+        width: 100%;
+        color: #000;
+        background:#ff0;
+        font-size: 0.35em;
+        font-weight: 500;
+        letter-spacing: 0.3em;
+        text-align: center;
+        transition: 0.5s;
+        white-space: nowrap;
+      }
+      
+    &:hover span:nth-child(3){
+        transform:translateY(-50%) scaleY(1);
+    }
+}

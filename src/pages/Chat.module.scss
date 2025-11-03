@@ -1,0 +1,289 @@
+$margin: 12px;
+
+.chat {
+    &.leftAlign {
+        .ai-bot-wrapper {
+            max-width: 65%;
+            margin-right: auto;
+            margin-left: 0;
+            word-break: keep-all;
+            width: fit-content;
+        }
+    }
+    .notice {
+        font-size: 12px;
+        margin: $margin auto 0;
+        padding: 2px 16px;
+        background-color: rgba(0,0,0,0.1);
+        border-radius: 20px;
+    }
+    .message {
+        font-size: 14px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        line-height: 1.5;
+    }
+    
+    .receive {
+        max-width: 60%;
+        margin: $margin auto 0 0;
+        .message {
+            background: var(--gray-border-color);
+        }
+    }
+    .send {
+        max-width: 60%;
+        margin: $margin 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        -ms-flex-direction: column;
+        gap: 4px;
+        .message {
+            background: var(--point-dim-color);
+        }
+        & > div { margin-left: auto; }
+    }
+
+    .username {
+        font-size: 12px;
+        font-weight: 600;
+        margin-left: 4px;
+    }
+
+    // AI Bot Message Styles
+    .ai-bot-wrapper {
+        align-items: center;
+        gap: 8px;
+        margin: $margin auto;
+        padding: 8px 12px;
+        background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+        border-radius: 12px;
+        max-width: 40%;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        color: white;
+    }
+
+    .ai-bot-icon {
+        font-size: 16px;
+        flex-shrink: 0;
+        position: absolute;
+        top: 0;
+        transform: translateY(-24px);
+        left: 8px;
+    }
+
+    .ai-bot-message {
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+    }
+
+    .comment-wrapper {
+        align-items: center;
+        gap: 8px;
+        margin: $margin auto;
+        padding: 4px;
+        border-radius: 12px;
+        max-width: 40%;
+        border: 2px solid;
+        color: white;
+    }
+
+    .comment-message {
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        word-break: keep-all;
+        padding: 8px 12px;
+    }
+
+    // Clean Bot Message Styles
+    .clean-bot-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: $margin auto;
+        padding: 8px 12px;
+        background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
+        border-radius: 12px;
+        max-width: 80%;
+        box-shadow: 0 2px 8px rgba(17, 153, 142, 0.3);
+        color: white;
+    }
+
+    .clean-bot-icon {
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+
+    .clean-bot-message {
+        color: white;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        width: 180px;
+        word-break: keep-all;
+    }
+
+
+    .message, .ai-bot-wrapper, .clean-bot-wrapper {
+        animation: chatani 0.2s ease-in-out forwards;
+    }
+
+    // 이모지 스타일
+   // 이모지 스타일
+    :global(.emoji) {
+        font-size: 1.2em;
+        margin: 0 1px;
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+    }
+
+    :global(.emojiLarge) {
+        font-size: 3em;
+        margin: 0 ; 
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 1;
+    }
+}
+
+.sidebar {
+    border-radius: 20px;
+    transition: all .5s;
+    position: absolute;
+    left: 0;
+    top: 20px;
+    transform: translateX(-100%);
+    box-shadow: 0 0 20px rgba(0,0,0,0.35);
+    overflow: hidden;
+    height: 92vh;
+    max-height: 600px;
+    min-height: 600px;
+    opacity: 0;
+    width: 440px;
+    max-width: 100%;
+
+    &.right {
+        transform: translateX(100%);
+        left: initial !important;
+        right: 0;
+    }
+
+    &.active {
+        left: -20px;
+        animation: sidebarActivate 1s forwards;
+        &.right {
+            right: -20px;
+        }
+    }
+
+    &.inactive {
+        animation: sidebarInActivate 1s forwards;
+    }
+
+    img.fa-bounce {
+        --fa-bounce-land-scale-x: 1.2;--fa-bounce-land-scale-y: .8;--fa-bounce-rebound: 5px;
+    }
+
+    input {
+        background-color: var(--gray-border-color) !important;
+    }
+
+    .send {
+        max-width: 75%;
+        .message {
+            background: var(--gray-border-color);
+        }
+    }
+
+    // Sidebar header styles
+    .sidebarHeader {
+        position: relative;
+    }
+
+    .maxHeight800 {
+        max-height: 800px;
+    }
+
+    // TTS 토글 버튼
+    .audioToggleBtn {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        width: 40px;
+        height:40px;
+        border-radius: 50%;
+        color: white;
+        padding: 0;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.2s;
+        font-size: 16px;
+
+        &.enabled {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+    }
+
+    // 채팅 입력창 스타일
+    .chatInput {
+        font-size: 14px;
+        padding-right: 40px;
+    }
+
+    // 이모지 버튼
+    .emojiBtn {
+        position: absolute;
+        right: 4px;
+        top: 4px;
+        min-width: 32px;
+        height: 32px;
+        font-size: 22px;
+        color: rgba(0, 0, 0, 0.7);
+        line-height: 28px;
+        padding: 0;
+        border-radius: 20px;
+        border: none;
+    }
+
+    // 제출 버튼
+    .submitBtn {
+        min-width: 40px;
+        height: 40px;
+    }
+
+    // 제출 아이콘
+    .submitIcon {
+        font-size: 16px;
+    }
+
+    // 숨겨진 오디오 플레이어
+    .hiddenAudio {
+        display: none;
+    }
+}
+
+@keyframes chatani {
+    0% { opacity: 0; transform: translateY(20%); }
+    100% { opacity: 100%; transform: translateY(0); }
+}
+
+@keyframes sidebarActivate {
+    0% { display: none; opacity: 0; }
+    1% { display: flex; opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes sidebarInActivate {
+    0% { display: flex; opacity: 1; }
+    99% { opacity: 0; width: 440px; }
+    100% { display: none !important; width: 0; height: 0; opacity: 0; }
+}

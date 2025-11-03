@@ -1,0 +1,52 @@
+# Python 서버 의존성
+fastapi[all]
+
+# 환경변수 로드
+python-dotenv
+
+# HTTP 요청
+requests
+
+# 데이터 처리
+pandas
+numpy
+
+# 머신러닝 / AI
+openai
+catboost
+scikit-learn
+librosa>=0.11.0  # 음악 분석
+soundfile  # 오디오 파일 처리
+
+# 데이터베이스
+oracledb
+sqlalchemy
+
+yt-dlp>=2024.1.1  # 최신 버전으로 업그레이드
+webvtt-py  # VTT 파일 파싱 라이브러리
+youtube-transcript-api>=1.2.0  # YouTube 자막 추출
+# 암호화/압축
+cryptography
+brotli
+urllib3
+
+# LangChain 관련
+langchain==0.3.27
+langchain-openai==0.3.35
+langchain-core==0.3.79
+langchain-chroma==0.2.6
+
+# 웹 크롤링
+selenium
+webdriver-manager
+beautifulsoup4
+
+
+# 이미지 처리
+Pillow
+
+# 스케줄링
+schedule
+
+# 블록체인
+web3

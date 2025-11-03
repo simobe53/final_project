@@ -1,0 +1,184 @@
+.container {
+  padding: 20px;
+  background-color: white;
+  font-family: 'Arial', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #333;
+  border-bottom: 3px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.lineupContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.lineupBox {
+  flex: 0 0 200px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  border: 2px solid #dee2e6;
+}
+
+.lineupTitle {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+.lineupList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.playerCard {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
+  font-size: 12px;
+}
+
+.playerImage {
+  font-size: 16px;
+  margin-right: 8px;
+  min-width: 20px;
+}
+
+.playerInfo {
+  flex: 1;
+}
+
+.playerName {
+  font-weight: bold;
+}
+
+.playerPosition {
+  font-size: 10px;
+  color: #666;
+}
+
+.battingOrder {
+  font-size: 11px;
+  font-weight: bold;
+  color: #007bff;
+  min-width: 25px;
+}
+
+.pitcherSection {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.pitcherHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.pitcherBox {
+  flex: 1;
+  text-align: center;
+  padding: 15px;
+}
+
+.pitcherImage {
+  font-size: 20px;
+  background-color: #e9ecef;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px auto;
+  border: 3px solid #dee2e6;
+}
+
+.pitcherName {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.pitcherTeam {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.vsText {
+  font-size: 36px;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+}
+
+.pitcherStats {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+}
+
+.pitcherStatsLeft {
+  flex: 1;
+  text-align: right;
+  font-size: 14px;
+  padding: 0 15px;
+}
+
+.pitcherStatsRight {
+  flex: 1;
+  text-align: left;
+  font-size: 14px;
+  padding: 0 15px;
+}
+
+.statsLabel {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  min-width: 100px;
+  text-align: center;
+}
+
+.statItem {
+  margin-bottom: 6px;
+}
+
+.statItemHighlighted {
+  margin-bottom: 6px;
+  color: red;
+  font-weight: bold;
+}

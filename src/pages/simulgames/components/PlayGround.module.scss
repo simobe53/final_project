@@ -1,0 +1,335 @@
+$delay: 3s;
+$time: 1s;
+
+.root {
+    background: url("/assets/icons/ground.png") center / 120% 120% no-repeat;
+    width: 100%;
+    height: 400px;
+    position: relative;
+
+    .dim {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        background-color: rgba(0,0,0,0.5);
+        transition: all 1s;
+    }
+
+    .popResult {
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        z-index: 1;
+        transform: translateX(-50%);
+        padding: 12px 16px;
+        line-height: 1;
+        font-size: 16px;
+        font-weight: 700;
+        background-color: rgba(0,0,0,0.7);
+        border-radius: 12px;
+        color: var(--point-color);
+    }
+
+    .nextTurn {
+        position:absolute;
+        bottom: 12px;
+        left: 12px;
+        padding: 8px 20px;
+        border-radius: 12px;
+        width: 120px;
+        background: rgba(255,255,255,0.5);
+        p {
+            position: absolute;
+            top: -20px;
+            right: 8px;
+            font-size: 14px;
+            letter-spacing: -1px;
+        }
+        li {
+            letter-spacing: -1px;
+        }
+    }
+
+    .ground{
+
+        li { 
+            position: absolute; 
+            display: flex;
+            align-items: center;
+            flex-direction: column; 
+            -ms-flex-direction: column;
+        }
+
+        .of1 { top: 90px; left: 130px; }
+        .of2 { top: 30px; left: 370px; }
+        .of3 { top: 90px; left: 76%; }
+        .ss { top: 120px; left: 260px; }
+
+        .fb { top: 50%; left: 75%; }
+        .sb { top: 90px; left: 420px; }
+        .tb { top: 50%; left: 18%; }
+
+        .p { top: 46%; left: 46.5%; }
+        .c { top: 80%; left: 47%; }
+
+        .lb, .gobaseleftto1, .gobaseleftto2, .gobaseleftto3, .gobaseleftto4,
+        .gobaseleftto1out, .gobaseleftto2out, .gobaseleftto3out, .gobaseleftto4out { top: 72%; left: 54%; }
+        .rb, .gobaserightto1, .gobaserightto2, .gobaserightto3, .gobaserightto4,
+        .gobaserightto1out, .gobaserightto2out, .gobaserightto3out, .gobaserightto4out { top: 72%; left: 40%; }
+
+        .bs1, .gobase1to1, .gobase1to2, .gobase1to3, .gobase1to4,
+        .bs1out, .gobase1to1out, .gobase1to2out, .gobase1to3out, .gobase1to4out { top: 45%; left: 70%; }
+        .bs2, .gobase2to2, .gobase2to3, .gobase2to4,
+        .bs2out, .gobase2to2out, .gobase2to3out, .gobase2to4out { top: 80px; left: 370px; }
+        .bs3, .gobase3to3, .gobase3to4, .bs3out, .gobase3to3out, .gobase3to4out { top: 45%; left: 23%; }
+
+        .out {
+            opacity: 0;
+        }
+
+        .hidden { display: none; }
+
+        .blind {
+            visibility: hidden;
+            width: 0;
+            position: absolute;
+        }
+
+        .name {
+            background: rgba(0,0,0,0.5);
+            color: #FFF;
+            font-size: 13px;
+            border-radius: 20px;
+            padding: 2px 8px;
+        }
+
+        .img {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            overflow: hidden;
+            img {
+                width: 100%;
+                height: auto;
+            }
+            & + .name {
+                background-color: rgba(255,255,255,0.8);
+                color: #333;
+            }
+        }
+
+        .gobaseleftto1 { animation: gobase1left ($time) ease-in ($delay) forwards; }
+        .gobaserightto1 { animation: gobase1right ($time) ease-in ($delay) forwards; }
+        .gobaseleftto2 { animation: gobase2left ($time * 2) ease-in ($delay) forwards; }
+        .gobaserightto2 { animation: gobase2right ($time * 2) ease-in ($delay) forwards; }
+        .gobaseleftto3 { animation: gobase3left ($time * 3) ease-in ($delay) forwards; }
+        .gobaserightto3 { animation: gobase3right ($time * 3) ease-in ($delay) forwards; }
+        .gobaseleftto4 { animation: gobase4left ($time * 2) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 2) forwards; }
+        .gobaserightto4 { animation: gobase4right ($time * 2) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 2) forwards; }
+        .gobase1to2 { animation: gobase1to2 ($time) ease-in ($delay) forwards; }
+        .gobase1to3 { animation: gobase1to3 ($time * 2) ease-in ($delay) forwards; }
+        .gobase1to4 { animation: gobase1to4 ($time * 3) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 3) forwards; }
+        .gobase2to3 { animation: gobase2to3 ($time) ease-in ($delay) forwards; }
+        .gobase2to4 { animation: gobase2to4 ($time * 2) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 2) forwards; }
+        .gobase3to4 { animation: gobase3to4 ($time) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time) forwards; }
+
+        .bs1out, .bs2out, .bs3out { animation: out 0.1s ease-in ($delay) forwards; }
+        .gobaseleftto1out { animation: gobase1left ($time) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time) forwards; }
+        .gobaserightto1out { animation: gobase1right ($time) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time) forwards; }
+        .gobaseleftto2out { animation: gobase2left ($time * 2) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 2) forwards; }
+        .gobaserightto2out { animation: gobase2right ($time * 2) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 2) forwards; }
+        .gobaseleftto3out { animation: gobase3left ($time * 3) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 3) forwards; }
+        .gobaserightto3out { animation: gobase3right ($time * 3) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 3) forwards; }
+        .gobaseleftto4out { animation: gobase4left ($time * 2) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 2) forwards; }
+        .gobaserightto4out { animation: gobase4right ($time * 2) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 2) forwards; }
+        .gobase1to2out { animation: gobase1to2 ($time) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time) forwards; }
+        .gobase1to3out { animation: gobase1to3 ($time * 2) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 2) forwards; }
+        .gobase1to4out { animation: gobase1to4 ($time * 3) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 3) forwards; }
+        .gobase2to3out { animation: gobase2to3 ($time) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time) forwards; }
+        .gobase2to4out { animation: gobase2to4 ($time * 2) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time * 2) forwards; }
+        .gobase3to4out { animation: gobase3to4 ($time) ease-in ($delay) forwards, out 0.1s ease-in ($delay + $time) forwards; }
+    }
+}
+
+@keyframes gobase1left {
+    0% { top: 72%; left: 54%; }
+    100% { top: 45%; left: 70%; }
+}
+
+@keyframes gobase1right {
+    0% { top: 72%; left: 40%; }
+    100% { top: 45%; left: 70%; }
+}
+
+@keyframes gobase2left {
+    0% { top: 72%; left: 54%; }
+    50% { top: 45%; left: 70%; }
+    100% { top: 80px; left: 370px; }
+}
+
+@keyframes gobase2right {
+    0% { top: 72%; left: 40%; }
+    50% { top: 45%; left: 70%; }
+    100% { top: 80px; left: 370px; }
+}
+
+@keyframes gobase3left {
+    0% { top: 72%; left: 54%; }
+    33% { top: 45%; left: 70%; }
+    66% { top: 80px; left: 370px; }
+    100% { top: 45%; left: 23%; }
+}
+
+@keyframes gobase3right {
+    0% { top: 72%; left: 40%; }
+    33% { top: 45%; left: 70%; }
+    66% { top: 80px; left: 370px; }
+    100% { top: 45%; left: 23%; }
+}
+
+@keyframes gobase4left {
+    0% { top: 72%; left: 40%; }
+    25% { top: 45%; left: 70%; }
+    50% { top: 80px; left: 370px; }
+    75% { top: 45%; left: 23%; }
+    99% { top: 80%; left: 47%; }
+    100% { display:none; }
+}
+@keyframes gobase4right {
+    0% { top: 72%; left: 40%; }
+    25% { top: 45%; left: 70%; }
+    50% { top: 80px; left: 370px; }
+    75% { top: 45%; left: 23%; }
+    99% { top: 80%; left: 47%; }
+    100% { display:none; }
+}
+
+@keyframes gobase1to2 {
+    0% { top: 45%; left: 70%; }
+    100% { top: 80px; left: 370px; }
+}
+
+@keyframes gobase1to3 {
+    0% { top: 45%; left: 70%; }
+    55% { top: 80px; left: 370px; }
+    100% { top: 45%; left: 23%; }
+}
+
+@keyframes gobase1to4 {
+    0% { top: 45%; left: 70%; }
+    33% { top: 80px; left: 370px; }
+    66% { top: 45%; left: 23%; }
+    100% { top: 80%; left: 47%; }
+}
+
+@keyframes gobase2to3 {
+    0% { top: 80px; left: 370px; }
+    100% { top: 45%; left: 23%; }
+}
+
+@keyframes gobase2to4 {
+    0% { top: 80px; left: 370px; }
+    50% { top: 45%; left: 23%; }
+    100% { top: 80%; left: 47%; }
+}
+
+@keyframes gobase3to4 {
+    0% { top: 45%; left: 23%; }
+    100% { top: 80%; left: 47%; }
+}
+
+/* 가다가 아웃되는 경우 */
+
+@keyframes gobase1leftout {
+    0% { top: 72%; left: 54%; }
+    100% { top: 45%; left: 70%; }
+}
+
+@keyframes gobase1rightout {
+    0% { top: 72%; left: 40%; }
+    100% { top: 45%; left: 70%; }
+}
+
+@keyframes gobase2leftout {
+    0% { top: 72%; left: 54%; }
+    50% { top: 45%; left: 70%; }
+    100% { top: 80px; left: 370px; }
+}
+
+@keyframes gobase2rightout {
+    0% { top: 72%; left: 40%; }
+    50% { top: 45%; left: 70%; }
+    100% { top: 80px; left: 370px; }
+}
+
+@keyframes gobase3leftout {
+    0% { top: 72%; left: 54%; }
+    33% { top: 45%; left: 70%; }
+    66% { top: 80px; left: 370px; }
+    100% { top: 45%; left: 23%; }
+}
+
+@keyframes gobase3rightout {
+    0% { top: 72%; left: 40%; }
+    33% { top: 45%; left: 70%; }
+    66% { top: 80px; left: 370px; }
+    100% { top: 45%; left: 23%; }
+}
+
+@keyframes gobase4leftout {
+    0% { top: 72%; left: 40%; }
+    25% { top: 45%; left: 70%; }
+    50% { top: 80px; left: 370px; }
+    75% { top: 45%; left: 23%; }
+    100% { top: 80%; left: 47%; }
+}
+@keyframes gobase4rightout {
+    0% { top: 72%; left: 40%; }
+    25% { top: 45%; left: 70%; }
+    50% { top: 80px; left: 370px; }
+    75% { top: 45%; left: 23%; }
+    100% { top: 80%; left: 47%; }
+}
+
+@keyframes gobase1to2out {
+    0% { top: 45%; left: 70%; }
+    100% { top: 80px; left: 370px; }
+}
+
+@keyframes gobase1to3out {
+    0% { top: 45%; left: 70%; }
+    55% { top: 80px; left: 370px; }
+    100% { top: 45%; left: 23%; }
+}
+
+@keyframes gobase1to4out {
+    0% { top: 45%; left: 70%; }
+    33% { top: 80px; left: 370px; }
+    66% { top: 45%; left: 23%; }
+    100% { top: 80%; left: 47%; }
+}
+
+@keyframes gobase2to3out {
+    0% { top: 80px; left: 370px; }
+    100% { top: 45%; left: 23%; }
+}
+
+@keyframes gobase2to4out {
+    0% { top: 80px; left: 370px; }
+    50% { top: 45%; left: 23%; }
+    100% { top: 80%; left: 47%; }
+}
+
+@keyframes gobase3to4out {
+    0% { top: 45%; left: 23%; }
+    100% { top: 80%; left: 47%; }
+}
+
+@keyframes out {
+    0% { display: flex; }
+    100% { display: none !important; opacity: 0; }
+}

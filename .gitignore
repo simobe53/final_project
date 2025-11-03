@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.erd
+
+my_venv
+
+# Python 뉴스 백업 파일 (타임스탬프 파일은 제외, latest만 포함)
+python/news_backup/kbo_news_202*.csv
+
+# Python cache 파일
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Spring Boot static 빌드 파일 (배포 시에만 생성)
+springboot/src/main/resources/static/assets/
+

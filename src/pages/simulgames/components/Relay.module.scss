@@ -1,0 +1,23 @@
+.inning_count{
+    margin: auto;
+    padding: 0;
+    width: 70%;
+    height: 40px;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    box-sizing: content-box;
+    .items{
+        width: 50px;
+        height: 35px;
+        border: none;
+        background-color: white;
+        transition: all .2s;
+    }
+
+    .active {
+        color: var(--point-color);
+        font-weight: 700;
+        border-bottom: 3px solid var(--point-color);
+    }
+}

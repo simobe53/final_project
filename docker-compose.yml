@@ -1,0 +1,144 @@
+version: '3.8'
+# docker-compose 명령어시 기본적으로 docker-compose.yml 사용
+# docker-compose up 시 기본적으로 같은 폴더의 .env를 환경변수로 사용
+services:
+  # Oracle Database
+  oracle:
+    # Oracle이 제공하는 공식 이미지 사용
+    image: container-registry.oracle.com/database/express:18.4.0-xe
+    container_name: oracle-xe
+    environment:
+      - ORACLE_PWD=${ORACLE_PWD}
+      - ORACLE_CHARACTERSET=AL32UTF8
+      - TZ=Asia/Seoul
+    # 서버 내부에서 접근 가능 sqlplus system/ict1234@localhost:1521/XE 혹시몰라서 놔둠
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    networks:
+      - kbo-network
+    healthcheck:
+      test: ["CMD-SHELL", "echo 'SELECT 1 FROM DUAL;' | sqlplus -S system/ict1234@localhost:1521/XE"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    # 컨테이너 종료 시 자동 재시작
+    restart: unless-stopped
+
+  # Spring Boot Backend
+  springboot:
+    # Docker Hub에서 이미지 다운로드 (build 섹션 제거)
+    image: ruyahct/kbo-springboot:latest
+    container_name: kbo-springboot
+    environment:
+      - TZ=Asia/Seoul
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=${SPRING_JPA_HIBERNATE_DDL_AUTO}
+      - SWAGGER_ENABLED=${SWAGGER_ENABLED}
+      - FASTAPI_SERVER_URL=${FASTAPI_SERVER_URL}
+      - KAKAO_REST_API_KEY=${KAKAO_REST_API_KEY}
+      - KAKAO_REDIRECT_URI=${KAKAO_REDIRECT_URI}
+      - KAKAO_LOGOUT_REDIRECT_URI=${KAKAO_LOGOUT_REDIRECT_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION=${JWT_EXPIRATION}
+      - COOKIE_SECURE=${COOKIE_SECURE}
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - PASSWORDLESS_SERVER_ID=${PASSWORDLESS_SERVER_ID}
+      - PASSWORDLESS_SERVER_KEY=${PASSWORDLESS_SERVER_KEY}
+      - PASSWORDLESS_REST_URL=${PASSWORDLESS_REST_URL}
+      - PASSWORDLESS_WS_URL=${PASSWORDLESS_WS_URL}
+      - PASSWORDLESS_RECOMMEND=${PASSWORDLESS_RECOMMEND}
+      - FRONT_URL=${FRONT_URL}
+      - ACCOUNT_ID=${ACCOUNT_ID}
+      - ACCESS_KEY_ID=${ACCESS_KEY_ID}
+      - SECRET_ACCESS_KEY=${SECRET_ACCESS_KEY}
+      - PUBLIC_BASE_URL=${PUBLIC_BASE_URL}
+    depends_on:
+      # Oracle DB가 healthy 상태일 때만 시작
+      oracle:
+        condition: service_healthy
+    networks:
+      - kbo-network
+    # 컨테이너 종료 시 자동 재시작
+    restart: unless-stopped
+
+  # FastAPI ML Service
+  fastapi:
+    # Docker Hub에서 이미지 다운로드 (build 섹션 제거)
+    image: ruyahct/kbo-fastapi:latest
+    container_name: kbo-fastapi
+    volumes:
+      - fastapi-audio:/app/static_audio
+    environment:
+      - TZ=Asia/Seoul
+      - DB_HOST=oracle
+      - DB_PORT=1521
+      - DB_SERVICENAME=XEPDB1
+      - DB_USER=${SPRING_DATASOURCE_USERNAME}
+      - DB_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - SUNOAI_API_KEY=${SUNOAI_API_KEY}
+      - OPENWEATHER_API_KEY=${OPENWEATHER_API_KEY}
+      - YOUTUBE_API_KEY=${YOUTUBE_API_KEY}
+      - YT_PROXY_URL=${YT_PROXY_URL}
+      - FASTAPI_BASE_URL=${FASTAPI_BASE_URL}
+      - FRONT_URL=${FRONT_URL}
+      - ENDPOINT=${ENDPOINT}
+      - BUCKET=${BUCKET}
+      - SPRING_SERVER_URL=${SPRING_SERVER_URL}
+      - PUBLIC_BASE_URL=${PUBLIC_BASE_URL}
+      - ACCOUNT_ID=${ACCOUNT_ID}
+      - ACCESS_KEY_ID=${ACCESS_KEY_ID}
+      - SECRET_ACCESS_KEY=${SECRET_ACCESS_KEY}
+    depends_on:
+      oracle:
+        condition: service_healthy
+    networks:
+      - kbo-network
+    restart: unless-stopped
+
+  # Nginx Reverse Proxy
+  nginx:
+    # Docker Hub에서 이미지 다운로드 (build 섹션 제거)
+    image: ruyahct/kbo-nginx:latest
+    container_name: kbo-nginx
+    environment:
+      - TZ=Asia/Seoul
+    # 외부 노출 포트
+    ports:
+      - "80:80"
+      - "443:443"
+    # Let's Encrypt 인증서 마운트
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro  # 읽기 전용으로 마운트
+      - /var/lib/letsencrypt:/var/lib/letsencrypt:ro
+    depends_on:
+      - springboot
+      - fastapi
+    networks:
+      - kbo-network
+    restart: unless-stopped
+
+# Named volumes
+volumes:
+  oracle-data:
+    external: true
+    name: ict_project_final_oracle-data  # 기존 볼륨 이름 사용 (데이터 보존)
+
+  fastapi-audio:
+    name: kbo_fastapi_audio  # FastAPI 오디오 파일 저장
+    driver: local
+
+# Networks
+networks:
+  kbo-network:
+    driver: bridge
+    # Bridge 네트워크 생성
+    # 같은 네트워크의 컨테이너끼리만 통신
+    # 서비스 이름으로 DNS 자동 등록

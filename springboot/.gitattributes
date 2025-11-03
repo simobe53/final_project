@@ -1,0 +1,5 @@
+/mvnw text eol=lf
+*.cmd text eol=crlf
+
+# .env 파일은 줄바꿈 문자 변환 제외
+.env text eol=lf

@@ -1,0 +1,209 @@
+// 모달 오버레이
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+// 모달 컨테이너 (절반 크기)
+.modalContainer {
+  position: relative;
+  width: 300px; // 절반 크기
+  height: 400px; // 절반 크기
+  perspective: 1000px;
+}
+
+// X 버튼
+.closeButton {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  
+  &:hover {
+    background-color: #ff6666;
+    transform: scale(1.1);
+  }
+}
+
+// 플립 카드
+.flipCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  cursor: pointer;
+  
+  &.flipped {
+    transform: rotateY(180deg);
+  }
+}
+
+// 카드 앞면과 뒷면 공통 스타일
+.cardFront, .cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+// 카드 뒷면 (기본 정보)
+.cardBack {
+  transform: rotateY(180deg);
+}
+
+// 선수 이미지 (절반 크기)
+.playerImage {
+  width: 100px; // 절반 크기
+  height: 100px; // 절반 크기
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border: 3px solid var(--primary-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+// 선수 이름
+.playerName {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+// 기본 정보 섹션
+.basicInfo {
+  width: 100%;
+  text-align: center;
+  
+  h6 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 4px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    
+    li {
+      padding: 6px 0;
+      border-bottom: 1px solid #e9ecef;
+      font-size: 13px;
+      color: #495057;
+      text-align: center;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+// 스탯 섹션
+.statsSection {
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+  
+  h6 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 4px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    
+    li {
+      padding: 4px 0;
+      border-bottom: 1px solid #e9ecef;
+      font-size: 12px;
+      color: #495057;
+      text-align: center;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+// 스탯 정보가 없는 경우
+.noStats {
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+// 호버 효과
+.flipCard:hover {
+  transform: scale(1.02);
+  
+  &.flipped:hover {
+    transform: rotateY(180deg) scale(1.02);
+  }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+  .modalContainer {
+    width: 280px;
+    height: 380px;
+  }
+  
+  .playerImage {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .playerName {
+    font-size: 14px;
+  }
+}
+  
