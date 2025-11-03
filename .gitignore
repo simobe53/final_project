@@ -36,6 +36,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.pyc
+.env
 
 # Spring Boot static 빌드 파일 (배포 시에만 생성)
 springboot/src/main/resources/static/assets/
